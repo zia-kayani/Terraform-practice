@@ -7,29 +7,26 @@ terraform {
   }
 }
 
-#we are cerating the security gorups
-resource "aws_security_group" "sg_tf" {
-  name        = "sg_tf"
-  description = "my custom seucurity grup"
+  #we are cerating the security gorups
+  resource "aws_security_group" "sg_tf" {
+    name        = "sg_tf"
+    description = "my custom seucurity grup"
 
-  dynamic "ingress" {
-    for_each = [24,3306,443,80]
-    iterator = ports
-    content {
-      description = "TLS from VPC"
-      from_port = ports.value
-      to_port = ports.value
-      protocol = "tcp"
-      cidr_blocks = ["0.0.0.0/0"]
+    dynamic "ingress" {
+      for_each = [24,3306,443,80]
+      iterator = ports
+      content {
+        description = "TLS from VPC"
+        from_port = ports.value
+        to_port = ports.value
+        protocol = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+      }
+      
     }
-    
+
+
   }
-
-
-
-
-
-}
 
 
 # resource "aws_key_pair" "zia_key_pair" {
