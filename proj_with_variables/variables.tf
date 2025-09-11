@@ -7,11 +7,11 @@ variable "AwsSecretAccessKey" {
 variable "AwsDefaultRegion" {
 }
 
-#for securoty group
-variable "security_group" {
-  type = list 
-  default = ["sg-1234", "sg-3455", "sg-5555"]
-}
+# #for securoty group
+# variable "security_group" {
+#   type = list 
+#   default = ["sg-1234", "sg-3455", "sg-5555"]
+# }
 
 #for map 
 variable "ami_list" {
