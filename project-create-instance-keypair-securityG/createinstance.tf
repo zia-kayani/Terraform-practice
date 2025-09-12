@@ -20,7 +20,6 @@ resource "aws_instance" "my_instance" {
     Name = "zee_instance"
   }
 
-
   connection {
     type        = "ssh"
     user        = "ubuntu"
@@ -28,20 +27,15 @@ resource "aws_instance" "my_instance" {
     host        = self.public_ip
   }
 
-
   provisioner "file" {
     source      = "${path.module}/file.txt"
     destination = "/tmp/file.txt"
   }
 
-
   provisioner "file" {
     content     = "this is the second file of the instance"
     destination = "/tmp/file1.txt"
   }
-
-  
-
 } #instance ends 
 
 

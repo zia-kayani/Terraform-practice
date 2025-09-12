@@ -1,0 +1,247 @@
+<!doctype html>
+<!--
+  portfolio.html
+  A single-file, responsive static portfolio template.
+  - HTML5 + CSS (responsive)
+  - Minimal JS for theme toggle & simple interactivity
+  Customize: replace text, images (use /assets/...), links, and project entries.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Portfolio of [Your Name] — web developer, designer, and problem solver." />
+  <title>[Your Name] — Portfolio</title>
+
+  <!-- Replace or remove the Google Font if you prefer local fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0f1724; --card:#0b1220; --muted:#9aa4b2; --accent:#7c3aed; --glass: rgba(255,255,255,0.04);
+      --max-width:1100px; --radius:12px;
+      color-scheme: dark;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;}
+    body{
+      margin:0; font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background:linear-gradient(180deg,#071124 0%, #07111a 60%); color:#e6eef6; -webkit-font-smoothing:antialiased;
+      line-height:1.5; padding:32px;
+      display:flex; justify-content:center;
+    }
+    .container{width:100%; max-width:var(--max-width);} 
+
+    header{
+      display:flex; justify-content:space-between; align-items:center; gap:16px; margin-bottom:28px;
+    }
+    .brand{display:flex; gap:12px; align-items:center}
+    .logo{width:48px; height:48px; border-radius:10px; background:linear-gradient(135deg,var(--accent),#4f46e5); display:inline-flex; align-items:center; justify-content:center; font-weight:800}
+    nav a{color:var(--muted); text-decoration:none; margin-left:18px}
+    nav a:hover{color:#fff}
+
+    .hero{display:grid; grid-template-columns:1fr 360px; gap:28px; align-items:center; margin-bottom:36px}
+    .card{background:var(--card); padding:22px; border-radius:var(--radius); box-shadow:0 6px 20px rgba(2,6,23,0.6);}
+
+    .intro h1{margin:0 0 8px 0; font-size:28px}
+    .intro p{margin:0; color:var(--muted)}
+
+    .profile{display:flex; flex-direction:column; gap:14px; align-items:center}
+    .avatar{width:220px; height:220px; border-radius:14px; background:linear-gradient(180deg,#0b1220,#081028); display:flex; align-items:center; justify-content:center; font-weight:700}
+    .actions{display:flex; gap:10px; flex-wrap:wrap}
+    .btn{background:var(--accent); color:white; padding:10px 14px; border-radius:10px; text-decoration:none; font-weight:600}
+    .btn.secondary{background:transparent; border:1px solid rgba(255,255,255,0.06); color:var(--muted)}
+
+    section{margin-bottom:26px}
+    .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+    .project{padding:14px; background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent); border-radius:10px}
+    .project h3{margin:0 0 6px 0}
+    .project p{margin:0;color:var(--muted); font-size:14px}
+
+    .skills{display:flex; gap:8px; flex-wrap:wrap}
+    .skill{background:var(--glass); padding:8px 10px; border-radius:999px; font-size:13px; color:var(--muted)}
+
+    footer{color:var(--muted); font-size:13px; padding-top:18px; border-top:1px solid rgba(255,255,255,0.02)}
+
+    /* responsive */
+    @media (max-width:920px){
+      .hero{grid-template-columns:1fr;}
+      .grid-3{grid-template-columns:repeat(2,1fr)}
+      .avatar{width:180px;height:180px}
+    }
+    @media (max-width:520px){
+      body{padding:18px}
+      .grid-3{grid-template-columns:1fr}
+      nav a{margin-left:10px}
+      .logo{width:40px;height:40px}
+    }
+
+    /* small utilities */
+    .muted{color:var(--muted)}
+    .small{font-size:13px}
+    .project .meta{display:flex; justify-content:space-between; align-items:center; margin-top:10px}
+  </style>
+
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">YN</div>
+        <div>
+          <div style="font-weight:700">[Your Name]</div>
+          <div class="small muted">Web developer · Designer · Problem solver</div>
+        </div>
+      </div>
+
+      <nav aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="card intro">
+          <h1>Hi — I'm [Your Name]. I build beautiful, useful web experiences.</h1>
+          <p class="muted">I design and develop responsive websites and web apps. I care about performance, accessibility, and delightful UI.</p>
+
+          <div style="margin-top:18px; display:flex; gap:12px; align-items:center; flex-wrap:wrap">
+            <a class="btn" href="#projects">See Projects</a>
+            <a class="btn secondary" href="/resume.pdf" download>Download Resume</a>
+            <button id="themeToggle" class="btn secondary" aria-pressed="false">Toggle Theme</button>
+          </div>
+
+          <div style="margin-top:18px">
+            <h4 class="small muted">Currently</h4>
+            <div class="small">Working on <strong>Project X</strong> — an experimental UI toolkit.</div>
+          </div>
+        </div>
+
+        <aside class="card profile" aria-labelledby="profile-heading">
+          <div id="profile-heading" class="small muted">Hello 👋</div>
+          <div class="avatar">[Your Photo]</div>
+          <div style="text-align:center">
+            <div style="font-weight:700">[Your Name]</div>
+            <div class="muted small">Frontend Engineer — React, HTML, CSS</div>
+          </div>
+
+          <div class="actions">
+            <a class="btn" href="mailto:you@example.com">Email me</a>
+            <a class="btn secondary" href="https://github.com/your-username" target="_blank" rel="noopener">GitHub</a>
+            <a class="btn secondary" href="https://linkedin.com/in/your-username" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </aside>
+      </section>
+
+      <section id="about" class="card">
+        <h2>About</h2>
+        <p class="muted">I'm a web developer with experience building production sites and single-page applications. I enjoy turning ideas into working products and learning new technologies along the way.</p>
+      </section>
+
+      <section id="projects">
+        <h2 style="margin-bottom:12px">Projects</h2>
+        <div class="grid-3">
+          <article class="project card">
+            <h3>Project One</h3>
+            <p class="muted">A short description of the project — what problem it solves and the tech used.</p>
+            <div class="meta small muted"><span>React · Node</span><a href="#" class="small">View</a></div>
+          </article>
+
+          <article class="project card">
+            <h3>Project Two</h3>
+            <p class="muted">A short description of the project — what problem it solves and the tech used.</p>
+            <div class="meta small muted"><span>HTML · CSS · JS</span><a href="#" class="small">View</a></div>
+          </article>
+
+          <article class="project card">
+            <h3>Project Three</h3>
+            <p class="muted">A short description of the project — what problem it solves and the tech used.</p>
+            <div class="meta small muted"><span>Design · Figma</span><a href="#" class="small">View</a></div>
+          </article>
+        </div>
+      </section>
+
+      <section id="skills" class="card" style="margin-top:18px">
+        <h2>Skills</h2>
+        <div class="skills">
+          <span class="skill">HTML</span>
+          <span class="skill">CSS</span>
+          <span class="skill">JavaScript</span>
+          <span class="skill">React</span>
+          <span class="skill">Accessibility</span>
+          <span class="skill">Figma</span>
+        </div>
+      </section>
+
+      <section id="contact" class="card" style="margin-top:18px">
+        <h2>Contact</h2>
+        <p class="muted">Want to work together or say hi? Send a message and I'll reply as soon as I can.</p>
+
+        <!-- static contact: mailto. Replace with form handler if you add server processing -->
+        <form action="mailto:you@example.com" method="post" enctype="text/plain" style="margin-top:12px; display:flex; flex-direction:column; gap:8px; max-width:520px">
+          <input name="name" placeholder="Your name" style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit" required>
+          <input name="email" placeholder="Your email" type="email" style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit" required>
+          <textarea name="message" placeholder="Message" rows="5" style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit" required></textarea>
+          <div style="display:flex; gap:10px">
+            <button type="submit" class="btn">Send</button>
+            <button type="reset" class="btn secondary">Reset</button>
+          </div>
+        </form>
+      </section>
+
+    </main>
+
+    <footer style="margin-top:28px">
+      <div style="display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap">
+        <div class="small muted">© <span id="year"></span> [Your Name]. All rights reserved.</div>
+        <div class="small muted">Built with HTML, CSS & a little JS.</div>
+      </div>
+    </footer>
+
+  </div>
+
+  <script>
+    // Small interactive bits
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const themeBtn = document.getElementById('themeToggle');
+    themeBtn.addEventListener('click', ()=>{
+      const root = document.documentElement;
+      const isLight = root.style.getPropertyValue('--bg') === '';
+      if(!isLight){
+        // toggle to light-ish theme
+        root.style.setProperty('--bg','#f6fbff');
+        root.style.setProperty('--card','#ffffff');
+        root.style.setProperty('--muted','#475569');
+        root.style.setProperty('--accent','#7c3aed');
+        root.style.setProperty('color-scheme','light');
+        document.body.style.background = 'linear-gradient(180deg,#f8fbff 0%, #eef6ff 60%)';
+        document.body.style.color = '#06202b';
+        themeBtn.setAttribute('aria-pressed','true');
+      } else {
+        // revert to dark
+        root.style.setProperty('--bg','#0f1724');
+        root.style.setProperty('--card','#0b1220');
+        root.style.setProperty('--muted','#9aa4b2');
+        root.style.setProperty('--accent','#7c3aed');
+        root.style.setProperty('color-scheme','dark');
+        document.body.style.background = 'linear-gradient(180deg,#071124 0%, #07111a 60%)';
+        document.body.style.color = '#e6eef6';
+        themeBtn.setAttribute('aria-pressed','false');
+      }
+    });
+
+    // Smooth internal link scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const target = document.querySelector(a.getAttribute('href'));
+        if(target){ e.preventDefault(); target.scrollIntoView({behavior:'smooth', block:'start'}); }
+      })
+    });
+  </script>
+
+</body>
+</html>
