@@ -1,3 +1,3 @@
 provider "aws" {
-  region     = var.AwsDefaultRegion
+  region = var.AwsDefaultRegion
 }
